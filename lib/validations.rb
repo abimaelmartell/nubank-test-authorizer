@@ -17,7 +17,7 @@ module Validations
     @transactions
       .select { |e| e.merchant == transaction.merchant && e.amount == transaction.amount }
       .select { |e| e.time.between?(min_time, max_time) }
-      .length > 0
+      .length >= 1
   end
 
   def is_high_frequency? transaction
@@ -26,7 +26,7 @@ module Validations
 
     @transactions
       .select { |e| e.time.between?(min_time, max_time) }
-      .length > 1
+      .length >= 2
   end
 
   def is_insufficient_limit? transaction
