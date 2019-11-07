@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require_relative "lib/authorizer"
+
+parser = Authorizer.new
+
+$stdin.each_line do |line|
+  puts parser.process_json_operation line
+end
