@@ -14,11 +14,10 @@ module Validations
     max_time = transaction.time + TWO_MINUTES
     min_time = transaction.time - TWO_MINUTES
 
-    similar_transactions = @transactions
+    @transactions
       .select { |e| e.merchant == transaction.merchant && e.amount == transaction.amount }
       .select { |e| e.time.between?(min_time, max_time) }
-
-    similar_transactions.length > 0
+      .length > 0
   end
 
   def is_high_frequency? transaction
